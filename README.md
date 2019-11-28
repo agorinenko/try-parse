@@ -1,5 +1,13 @@
 # try_parse project
 Easily and safety cast objects to the desired data type
+
+[![PyPI version](https://badge.fury.io/py/try-parse.svg)](https://badge.fury.io/py/try-parse)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/try-parse)](https://img.shields.io/pypi/pyversions/try-parse)
+[![License](https://img.shields.io/pypi/l/try-parse)](https://img.shields.io/pypi/l/try-parse)
+## install
+``` python
+pip install try-parse
+```
 ## import
 ``` python
 from try_parse.utils import ParseUtils
