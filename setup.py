@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="try_parse",
-    version="0.0.5",
+    version="0.0.6",
     author="Gorinenko Anton",
     author_email="anton.gorinenko@gmail.com",
     description="Easily and safety cast objects to the desired data type",
