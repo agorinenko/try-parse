@@ -6,9 +6,10 @@ from typing import Tuple, Any, Optional
 
 class ParseUtils:
     @staticmethod
-    def try_parse_date(i: Any) -> Tuple[bool, Optional[date]]:
+    def try_parse_date(i: Any, format: str = None) -> Tuple[bool, Optional[date]]:
         """
         Parse object to date
+        :param format: date format
         :param i: object
         :return: status, date object
         """
@@ -18,14 +19,19 @@ class ParseUtils:
         if type(i) == date:
             return True, i
         try:
-            return True, date.fromisoformat(str(i))
+            i = str(i)
+            if format is None:
+                return True, date.fromisoformat(i)
+            else:
+                return True, datetime.strptime(i, format).date()
         except ValueError:
             return False, None
 
     @staticmethod
-    def try_parse_datetime(i: Any) -> Tuple[bool, Optional[datetime]]:
+    def try_parse_datetime(i: Any, format: str = None) -> Tuple[bool, Optional[datetime]]:
         """
         Parse object to datetime
+        :param format: datetime format
         :param i: object
         :return: status, datetime object
         """
@@ -35,7 +41,11 @@ class ParseUtils:
         if type(i) == datetime:
             return True, i
         try:
-            return True, datetime.fromisoformat(str(i))
+            i = str(i)
+            if format is None:
+                return True, datetime.fromisoformat(i)
+            else:
+                return True, datetime.strptime(i, format)
         except ValueError:
             return False, None
 

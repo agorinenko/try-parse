@@ -1,9 +1,9 @@
-# try_parse project
-Easily and safety cast objects to the desired data type
-
+# What's the good of that?
 [![PyPI version](https://badge.fury.io/py/try-parse.svg)](https://pypi.org/project/try-parse/)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/try-parse)](https://img.shields.io/pypi/pyversions/try-parse)
 [![License](https://img.shields.io/pypi/l/try-parse)](https://img.shields.io/pypi/l/try-parse)
+1. Cast the string representation of simple objects to the desired type.
+1. Safe type casting. The exception will not be thrown. The function returns status and result.
 ## install
 ```
 pip install try-parse
@@ -20,6 +20,12 @@ self.assertTrue(status)
 self.assertIsInstance(target, date)
 self.assertEqual(target, date(2018, 11, 23))
 
+# See format https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
+status, target = ParseUtils.try_parse_date('23.11.2018', format='%d.%m.%Y')
+self.assertTrue(status)
+self.assertIsInstance(target, date)
+self.assertEqual(target, date(2018, 11, 23))
+
 status, target = ParseUtils.try_parse_date('Invalid')
 self.assertFalse(status)
 self.assertIsNone(target)
@@ -28,6 +34,12 @@ self.assertIsNone(target)
 Parse object to datetime
 ``` python
 status, target = ParseUtils.try_parse_datetime('2018-11-23 01:45:59')
+self.assertTrue(status)
+self.assertIsInstance(target, datetime)
+self.assertEqual(target, datetime(2018, 11, 23, 1, 45, 59))
+
+# See format https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
+status, target = ParseUtils.try_parse_datetime('23.11.2018T01:45:59', format='%d.%m.%YT%H:%M:%S')
 self.assertTrue(status)
 self.assertIsInstance(target, datetime)
 self.assertEqual(target, datetime(2018, 11, 23, 1, 45, 59))
