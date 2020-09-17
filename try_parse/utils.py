@@ -5,9 +5,10 @@ from decimal import Decimal
 
 class ParseUtils:
     @staticmethod
-    def try_parse_date(i) -> (bool, date):
+    def try_parse_date(i, format: str = None) -> (bool, date):
         """
         Parse object to date
+        :param format: date format
         :param i: object
         :return: status, date object
         """
@@ -17,14 +18,19 @@ class ParseUtils:
         if type(i) == date:
             return True, i
         try:
-            return True, date.fromisoformat(str(i))
+            i = str(i)
+            if format is None:
+                return True, date.fromisoformat(i)
+            else:
+                return True, datetime.strptime(i, format).date()
         except ValueError:
             return False, None
 
     @staticmethod
-    def try_parse_datetime(i) -> (bool, datetime):
+    def try_parse_datetime(i, format: str = None) -> (bool, datetime):
         """
         Parse object to datetime
+        :param format: datetime format
         :param i: object
         :return: status, datetime object
         """
@@ -34,7 +40,11 @@ class ParseUtils:
         if type(i) == datetime:
             return True, i
         try:
-            return True, datetime.fromisoformat(str(i))
+            i = str(i)
+            if format is None:
+                return True, datetime.fromisoformat(i)
+            else:
+                return True, datetime.strptime(i, format)
         except ValueError:
             return False, None
 

@@ -12,12 +12,24 @@ class Tests(unittest.TestCase):
         self.assertIsInstance(target, date)
         self.assertEqual(target, date(2018, 11, 23))
 
+        # See format https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
+        status, target = ParseUtils.try_parse_date('23.11.2018', format='%d.%m.%Y')
+        self.assertTrue(status)
+        self.assertIsInstance(target, date)
+        self.assertEqual(target, date(2018, 11, 23))
+
         status, target = ParseUtils.try_parse_date('Invalid')
         self.assertFalse(status)
         self.assertIsNone(target)
 
     def test_try_parse_datetime(self):
         status, target = ParseUtils.try_parse_datetime('2018-11-23 01:45:59')
+        self.assertTrue(status)
+        self.assertIsInstance(target, datetime)
+        self.assertEqual(target, datetime(2018, 11, 23, 1, 45, 59))
+
+        # See format https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
+        status, target = ParseUtils.try_parse_datetime('23.11.2018T01:45:59', format='%d.%m.%YT%H:%M:%S')
         self.assertTrue(status)
         self.assertIsInstance(target, datetime)
         self.assertEqual(target, datetime(2018, 11, 23, 1, 45, 59))
