@@ -85,3 +85,16 @@ status, target = ParseUtils.try_parse_bool('Invalid')
 self.assertFalse(status)
 self.assertIsNone(target)
 ```
+## Mypy
+Mypy can be installed using pip:
+```
+pip install -U mypy
+```
+Testing
+```
+mypy ./try_parse/utils.py
+``` 
+## Run unittest from console
+```
+python -m unittest discover -p "*_tests.py"
+```

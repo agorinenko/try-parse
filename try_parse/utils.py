@@ -1,11 +1,12 @@
 import decimal
 from datetime import date, datetime
 from decimal import Decimal
+from typing import Tuple, Any, Optional
 
 
 class ParseUtils:
     @staticmethod
-    def try_parse_date(i) -> (bool, date):
+    def try_parse_date(i: Any) -> Tuple[bool, Optional[date]]:
         """
         Parse object to date
         :param i: object
@@ -22,7 +23,7 @@ class ParseUtils:
             return False, None
 
     @staticmethod
-    def try_parse_datetime(i) -> (bool, datetime):
+    def try_parse_datetime(i: Any) -> Tuple[bool, Optional[datetime]]:
         """
         Parse object to datetime
         :param i: object
@@ -39,7 +40,7 @@ class ParseUtils:
             return False, None
 
     @staticmethod
-    def try_parse_int(i) -> (bool, int):
+    def try_parse_int(i: Any) -> Tuple[bool, Optional[int]]:
         """
         Parse object to int
         :param i: object
@@ -56,7 +57,7 @@ class ParseUtils:
             return False, None
 
     @staticmethod
-    def try_parse_float(i) -> (bool, float):
+    def try_parse_float(i: Any) -> Tuple[bool, Optional[float]]:
         """
         Parse object to float
         :param i: object
@@ -73,7 +74,7 @@ class ParseUtils:
             return False, None
 
     @staticmethod
-    def try_parse_decimal(i) -> (bool, Decimal):
+    def try_parse_decimal(i: Any) -> Tuple[bool, Optional[Decimal]]:
         """
         Parse object to decimal
         :param i: object
@@ -90,7 +91,7 @@ class ParseUtils:
             return False, None
 
     @staticmethod
-    def try_parse_bool(i) -> (bool, bool):
+    def try_parse_bool(i: Any) -> Tuple[bool, Optional[bool]]:
         """
         Parse object to bool
         :param i: object
